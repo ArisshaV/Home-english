@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid's Box 2: At Home (Review)</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            color: #2c3e50;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #e67e22;
+            font-size: 2.2em;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+        .task {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            border-top: 5px solid #3498db;
+        }
+        .task h2 {
+            color: #2980b9;
+            margin-top: 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .task p {
+            color: #555;
+            font-size: 1.05em;
+        }
+        
+        /* Word Bank */
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        .word-bank span {
+            background: #ecf0f1;
+            border: 2px solid #bdc3c7;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #34495e;
+        }
+
+        /* Questions */
+        .question-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            flex-wrap: wrap;
+        }
+        .question-row span {
+            font-size: 1.1em;
+        }
+
+        /* Inputs */
+        input[type="text"] {
+            border: 2px solid #bdc3c7;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 1em;
+            width: 140px;
+            outline: none;
+            transition: border 0.2s;
+            font-family: inherit;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+        }
+        input[type="radio"] {
+            transform: scale(1.2);
+            margin-right: 5px;
+            cursor: pointer;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .radio-group label {
+            cursor: pointer;
+            font-weight: bold;
+            color: #2980b9;
+        }
+
+        /* Buttons & Results */
+        .btn {
+            background: #e67e22;
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: block;
+            margin: 20px auto 0;
+            box-shadow: 0 4px 6px rgba(230, 126, 34, 0.3);
+        }
+        .btn:hover { background: #d35400; }
+        .result {
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+            font-weight: bold;
+        }
+        .result.correct { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .result.incorrect { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        /* Task specific */
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .matching-item {
+            background: #f1f2f6;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        select {
+            padding: 8px;
+            border-radius: 6px;
+            border: 2px solid #bdc3c7;
+            font-family: inherit;
+            font-size: 1em;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Unit 4: At Home 🏠</h1>
+    <p class="subtitle">Повторение: мебель, одежда, mine/yours, звуки /əʊ/</p>
+
+    <!-- TASK 1: Furniture Vocabulary -->
+    <div class="task">
+        <h2>1. Furniture (Мебель и предметы)</h2>
+        <p>Вставь правильное слово по описанию.</p>
+        
+        <div class="question-row"><span>1. You can look at yourself in it. It is a </span><input type="text" id="t1_1" placeholder="..."><span>.</span></div>
+        <div class="question-row"><span>2. You sleep on it. It is a </span><input type="text" id="t1_2" placeholder="..."><span>.</span></div>
+        <div class="question-row"><span>3. It gives light in the evening. It is a </span><input type="text" id="t1_3" placeholder="..."><span>.</span></div>
+        <div class="question-row"><span>4. You can call your friends on it. It is a </span><input type="text" id="t1_4" placeholder="..."><span>.</span></div>
+        <div class="question-row"><span>5. It tells you the time. It is a </span><input type="text" id="t1_5" placeholder="..."><span>.</span></div>
+
+        <button class="btn" onclick="checkTask1()">Проверить</button>
+        <div id="res1" class="result"></div>
+    </div>
+
+    <!-- TASK 2: Rooms -->
+    <div class="task">
+        <h2>2. Where is it? (Комнаты)</h2>
+        <p>В какой комнате находится этот предмет? Выбери правильный вариант.</p>
+        
+        <div class="question-row">
+            <span>1. A bath is in the...</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t2_1" value="bathroom"> bathroom</label>
+                <label><input type="radio" name="t2_1" value="kitchen"> kitchen</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>2. A sofa is in the...</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t2_2" value="living room"> living room</label>
+                <label><input type="radio" name="t2_2" value="bathroom"> bathroom</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>3. A cooker is in the...</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t2_3" value="hall"> hall</label>
+                <label><input type="radio" name="t2_3" value="kitchen"> kitchen</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>4. A bed is in the...</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t2_4" value="living room"> living room</label>
+                <label><input type="radio" name="t2_4" value="bedroom"> bedroom</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>5. A coat rack is in the...</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t2_5" value="hall"> hall</label>
+                <label><input type="radio" name="t2_5" value="bathroom"> bathroom</label>
+            </div>
+        </div>
+
+        <button class="btn" onclick="checkTask2()">Проверить</button>
+        <div id="res2" class="result"></div>
+    </div>
+
+    <!-- TASK 3: Mine / Yours -->
+    <div class="task">
+        <h2>3. Mine or Yours? (Чья вещь?)</h2>
+        <p>Прочитай диалог и выбери правильное притяжательное местоимение.</p>
+        
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span><b>Simon:</b> Are these blue socks <u>yours</u> / <u>mine</u>?</span>
+            <span><b>Stella:</b> No, they aren't (1)...</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t3_1" value="mine"> mine</label>
+                <label><input type="radio" name="t3_1" value="yours"> yours</label>
+            </div>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start; margin-top: 15px;">
+            <span><b>Grandpa:</b> Whose shoes are these?</span>
+            <span><b>Stella:</b> They are (2)... (мои).</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t3_2" value="mine"> mine</label>
+                <label><input type="radio" name="t3_2" value="yours"> yours</label>
+            </div>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start; margin-top: 15px;">
+            <span><b>Simon:</b> Whose bag is this?</span>
+            <span><b>Stella:</b> It is (3)... (твоя).</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t3_3" value="mine"> mine</label>
+                <label><input type="radio" name="t3_3" value="yours"> yours</label>
+            </div>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start; margin-top: 15px;">
+            <span><b>Suzy:</b> Look at this book. Is it (4)... (твоя)?</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t3_4" value="mine"> mine</label>
+                <label><input type="radio" name="t3_4" value="yours"> yours</label>
+            </div>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start; margin-top: 15px;">
+            <span><b>Simon:</b> Yes, it is (5)... (моя). Thank you!</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t3_5" value="mine"> mine</label>
+                <label><input type="radio" name="t3_5" value="yours"> yours</label>
+            </div>
+        </div>
+
+        <button class="btn" onclick="checkTask3()">Проверить</button>
+        <div id="res3" class="result"></div>
+    </div>
+
+    <!-- TASK 4: His / Hers (UPDATED) -->
+    <div class="task">
+        <h2>4. His or Hers? (Чей предмет?)</h2>
+        <p>Прочитай предложение-подсказку и вставь правильное местоимение (<b>his</b> для мальчика, <b>hers</b> для девочки).</p>
+        
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span>1. Simon is a boy. This is Simon's coat. It is </span>
+            <input type="text" id="t4_1" placeholder="...">
+            <span>.</span>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span>2. Suzy is a girl. These are Suzy's shoes. They are </span>
+            <input type="text" id="t4_2" placeholder="...">
+            <span>.</span>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span>3. Grandpa is a man. This is Grandpa's bag. It is </span>
+            <input type="text" id="t4_3" placeholder="...">
+            <span>.</span>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span>4. Stella is a girl. This is Stella's phone. It is </span>
+            <input type="text" id="t4_4" placeholder="...">
+            <span>.</span>
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span>5. Simon is a boy. These are Simon's socks. They are </span>
+            <input type="text" id="t4_5" placeholder="...">
+            <span>.</span>
+        </div>
+
+        <button class="btn" onclick="checkTask4()">Проверить</button>
+        <div id="res4" class="result"></div>
+    </div>
+
+    <!-- TASK 5: Reading oa/ow/o_e -->
+    <div class="task">
+        <h2>5. Phonics: /əʊ/ Sound</h2>
+        <p>Раздели слова на группы по правилу чтения. Впиши их в нужные поля через запятую.</p>
+        <div class="word-bank">
+            <span>phone</span><span>boat</span><span>window</span><span>yellow</span><span>home</span><span>coat</span><span>bone</span><span>snow</span>
+        </div>
+        
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span><b>oa</b> (в середине):</span>
+            <input type="text" id="t5_oa" placeholder="Слова через запятую..." style="width: 100%; max-width: 300px;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span><b>ow</b> (в конце):</span>
+            <input type="text" id="t5_ow" placeholder="Слова через запятую..." style="width: 100%; max-width: 300px;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: flex-start;">
+            <span><b>o_e</b> (разделенные):</span>
+            <input type="text" id="t5_oe" placeholder="Слова через запятую..." style="width: 100%; max-width: 300px;">
+        </div>
+
+        <button class="btn" onclick="checkTask5()">Проверить</button>
+        <div id="res5" class="result"></div>
+    </div>
+
+    <!-- TASK 6: Correct the mistake -->
+    <div class="task">
+        <h2>6. Find the mistake</h2>
+        <p>В каждом предложении есть ошибка. Напиши предложение правильно.</p>
+        
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>1. There is a sofa in the bathroom.</span>
+            <input type="text" id="t6_1" placeholder="Напиши правильно..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>2. Are these socks your?</span>
+            <input type="text" id="t6_2" placeholder="Напиши правильно..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>3. This is Simon. This is her coat.</span>
+            <input type="text" id="t6_3" placeholder="Напиши правильно..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>4. There are a bed in the bedroom.</span>
+            <input type="text" id="t6_4" placeholder="Напиши правильно..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>5. Whose shoes is these?</span>
+            <input type="text" id="t6_5" placeholder="Напиши правильно..." style="width: 100%;">
+        </div>
+
+        <button class="btn" onclick="checkTask6()">Проверить</button>
+        <div id="res6" class="result"></div>
+    </div>
+
+    <!-- TASK 7: Clothes -->
+    <div class="task">
+        <h2>7. Clothes (Одежда)</h2>
+        <p>Выбери правильное слово по картинке-описанию.</p>
+        
+        <div class="question-row">
+            <span>1. You wear them on your feet. 🧦</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t7_1" value="socks"> socks</label>
+                <label><input type="radio" name="t7_1" value="shoes"> shoes</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>2. You wear them on your feet outside. 👟</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t7_2" value="socks"> socks</label>
+                <label><input type="radio" name="t7_2" value="shoes"> shoes</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>3. You wear them on your legs. 👖</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t7_3" value="trousers"> trousers</label>
+                <label><input type="radio" name="t7_3" value="coat"> coat</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>4. You wear it when it is cold. 🧥</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t7_4" value="coat"> coat</label>
+                <label><input type="radio" name="t7_4" value="trousers"> trousers</label>
+            </div>
+        </div>
+        <div class="question-row">
+            <span>5. You wear it on your head. 🧢</span>
+            <div class="radio-group">
+                <label><input type="radio" name="t7_5" value="hat"> hat</label>
+                <label><input type="radio" name="t7_5" value="shoes"> shoes</label>
+            </div>
+        </div>
+
+        <button class="btn" onclick="checkTask7()">Проверить</button>
+        <div id="res7" class="result"></div>
+    </div>
+
+    <!-- TASK 8: There is / There are -->
+    <div class="task">
+        <h2>8. There is / There are</h2>
+        <p>Вставь <b>is</b> или <b>are</b>.</p>
+        
+        <div class="question-row"><span>1. There </span><input type="text" id="t8_1" placeholder="..." style="width: 60px;"><span> a mirror in the bathroom.</span></div>
+        <div class="question-row"><span>2. There </span><input type="text" id="t8_2" placeholder="..." style="width: 60px;"><span> two lamps in the room.</span></div>
+        <div class="question-row"><span>3. There </span><input type="text" id="t8_3" placeholder="..." style="width: 60px;"><span> a mat on the floor.</span></div>
+        <div class="question-row"><span>4. There </span><input type="text" id="t8_4" placeholder="..." style="width: 60px;"><span> three phones on the table.</span></div>
+        <div class="question-row"><span>5. There </span><input type="text" id="t8_5" placeholder="..." style="width: 60px;"><span> a clock on the wall.</span></div>
+
+        <button class="btn" onclick="checkTask8()">Проверить</button>
+        <div id="res8" class="result"></div>
+    </div>
+
+    <!-- TASK 9: Matching -->
+    <div class="task">
+        <h2>9. Match the words</h2>
+        <p>Соедини слово и его перевод.</p>
+        
+        <div class="matching-grid">
+            <div class="matching-item">1. Mirror</div>
+            <div class="matching-item">
+                <select id="t9_1">
+                    <option value="">-- Выбрать --</option>
+                    <option value="Зеркало">Зеркало</option>
+                    <option value="Коврик">Коврик</option>
+                    <option value="Лампа">Лампа</option>
+                    <option value="Часы">Часы</option>
+                </select>
+            </div>
+            
+            <div class="matching-item">2. Clock</div>
+            <div class="matching-item">
+                <select id="t9_2">
+                    <option value="">-- Выбрать --</option>
+                    <option value="Зеркало">Зеркало</option>
+                    <option value="Коврик">Коврик</option>
+                    <option value="Лампа">Лампа</option>
+                    <option value="Часы">Часы</option>
+                </select>
+            </div>
+            
+            <div class="matching-item">3. Lamp</div>
+            <div class="matching-item">
+                <select id="t9_3">
+                    <option value="">-- Выбрать --</option>
+                    <option value="Зеркало">Зеркало</option>
+                    <option value="Коврик">Коврик</option>
+                    <option value="Лампа">Лампа</option>
+                    <option value="Часы">Часы</option>
+                </select>
+            </div>
+
+            <div class="matching-item">4. Mat</div>
+            <div class="matching-item">
+                <select id="t9_4">
+                    <option value="">-- Выбрать --</option>
+                    <option value="Зеркало">Зеркало</option>
+                    <option value="Коврик">Коврик</option>
+                    <option value="Лампа">Лампа</option>
+                    <option value="Часы">Часы</option>
+                </select>
+            </div>
+
+            <div class="matching-item">5. Phone</div>
+            <div class="matching-item">
+                <select id="t9_5">
+                    <option value="">-- Выбрать --</option>
+                    <option value="Телефон">Телефон</option>
+                    <option value="Коврик">Коврик</option>
+                    <option value="Лампа">Лампа</option>
+                    <option value="Часы">Часы</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn" onclick="checkTask9()">Проверить</button>
+        <div id="res9" class="result"></div>
+    </div>
+
+    <!-- TASK 10: Unscramble -->
+    <div class="task">
+        <h2>10. Unscramble the sentences</h2>
+        <p>Расставь слова в правильном порядке. (Вводи предложение целиком).</p>
+        
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>1. <b>the / is / sofa / in / living room / the</b></span>
+            <input type="text" id="t10_1" placeholder="Напиши предложение..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>2. <b>shoes / are / these / whose / ?</b></span>
+            <input type="text" id="t10_2" placeholder="Напиши предложение..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>3. <b>a / there / mirror / is / bathroom / the / in</b></span>
+            <input type="text" id="t10_3" placeholder="Напиши предложение..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>4. <b>is / this / coat / his / .</b></span>
+            <input type="text" id="t10_4" placeholder="Напиши предложение..." style="width: 100%;">
+        </div>
+        <div class="question-row" style="flex-direction: column; align-items: stretch;">
+            <span>5. <b>are / my / these / socks / .</b></span>
+            <input type="text" id="t10_5" placeholder="Напиши предложение..." style="width: 100%;">
+        </div>
+
+        <button class="btn" onclick="checkTask10()">Проверить</button>
+        <div id="res10" class="result"></div>
+    </div>
+
+</div>
+
+<script>
+    // --- Task 1 ---
+    function checkTask1() {
+        const answers = {
+            t1_1: ['mirror'], t1_2: ['bed'], t1_3: ['lamp'], t1_4: ['phone'], t1_5: ['clock']
+        };
+        let correct = 0;
+        for (let id in answers) {
+            const val = document.getElementById(id).value.toLowerCase().trim();
+            if (answers[id].includes(val)) correct++;
+        }
+        showResult('res1', correct === 5, correct, 5);
+    }
+
+    // --- Task 2 ---
+    function checkTask2() {
+        const answers = { t2_1: 'bathroom', t2_2: 'living room', t2_3: 'kitchen', t2_4: 'bedroom', t2_5: 'hall' };
+        let correct = 0;
+        for (let q in answers) {
+            const selected = document.querySelector(`input[name="${q}"]:checked`);
+            if (selected && selected.value === answers[q]) correct++;
+        }
+        showResult('res2', correct === 5, correct, 5);
+    }
+
+    // --- Task 3 ---
+    function checkTask3() {
+        const answers = { t3_1: 'yours', t3_2: 'mine', t3_3: 'yours', t3_4: 'yours', t3_5: 'mine' };
+        let correct = 0;
+        for (let q in answers) {
+            const selected = document.querySelector(`input[name="${q}"]:checked`);
+            if (selected && selected.value === answers[q]) correct++;
+        }
+        showResult('res3', correct === 5, correct, 5);
+    }
+
+    // --- Task 4 ---
+    function checkTask4() {
+        const answers = { t4_1: ['his'], t4_2: ['hers'], t4_3: ['his'], t4_4: ['hers'], t4_5: ['his'] };
+        let correct = 0;
+        for (let id in answers) {
+            const val = document.getElementById(id).value.toLowerCase().trim();
+            if (answers[id].includes(val)) correct++;
+        }
+        showResult('res4', correct === 5, correct, 5);
+    }
+
+    // --- Task 5 ---
+    function checkTask5() {
+        const norm = (str) => str.toLowerCase().replace(/\s+/g, ' ').replace(/,/g, ' ').trim();
+        const getWords = (id) => norm(document.getElementById(id).value).split(' ').filter(w => w !== '');
+        
+        const userOa = getWords('t5_oa');
+        const userOw = getWords('t5_ow');
+        const userOe = getWords('t5_oe');
+
+        const correctOa = ['boat', 'coat'];
+        const correctOw = ['window', 'yellow', 'snow'];
+        const correctOe = ['phone', 'home', 'bone'];
+
+        const checkSet = (user, correct) => {
+            const u = [...user].sort().join(',');
+            const c = [...correct].sort().join(',');
+            return u === c;
+        };
+
+        let correct = 0;
+        if (checkSet(userOa, correctOa)) correct++;
+        if (checkSet(userOw, correctOw)) correct++;
+        if (checkSet(userOe, correctOe)) correct++;
+
+        showResult('res5', correct === 3, correct, 3);
+    }
+
+    // --- Task 6 ---
+    function checkTask6() {
+        const normalize = (str) => str.toLowerCase().trim().replace(/\.$/, '').replace(/\s+/g, ' ');
+        
+        let correct = 0;
+        const val1 = normalize(document.getElementById('t6_1').value);
+        const val2 = normalize(document.getElementById('t6_2').value);
+        const val3 = normalize(document.getElementById('t6_3').value);
+        const val4 = normalize(document.getElementById('t6_4').value);
+        const val5 = normalize(document.getElementById('t6_5').value);
+
+        // 1. Мягкая проверка (главное - убрать ошибку)
+        if (!val1.includes('bathroom') && val1.includes('sofa')) correct++;
+        // 2. Are these your socks / Are these socks yours
+        if (val2 === "are these your socks" || val2 === "are these socks yours") correct++;
+        // 3. This is Simon. This is his coat.
+        if (val3.includes('his coat') && !val3.includes('her coat')) correct++;
+        // 4. There is a bed...
+        if (val4.includes('there is a bed')) correct++;
+        // 5. Whose shoes are these?
+        if (val5 === "whose shoes are these") correct++;
+
+        showResult('res6', correct === 5, correct, 5);
+    }
+
+    // --- Task 7 ---
+    function checkTask7() {
+        const answers = { t7_1: 'socks', t7_2: 'shoes', t7_3: 'trousers', t7_4: 'coat', t7_5: 'hat' };
+        let correct = 0;
+        for (let q in answers) {
+            const selected = document.querySelector(`input[name="${q}"]:checked`);
+            if (selected && selected.value === answers[q]) correct++;
+        }
+        showResult('res7', correct === 5, correct, 5);
+    }
+
+    // --- Task 8 ---
+    function checkTask8() {
+        const answers = { t8_1: ['is'], t8_2: ['are'], t8_3: ['is'], t8_4: ['are'], t8_5: ['is'] };
+        let correct = 0;
+        for (let id in answers) {
+            const val = document.getElementById(id).value.toLowerCase().trim();
+            if (answers[id].includes(val)) correct++;
+        }
+        showResult('res8', correct === 5, correct, 5);
+    }
+
+    // --- Task 9 ---
+    function checkTask9() {
+        const answers = { t9_1: 'Зеркало', t9_2: 'Часы', t9_3: 'Лампа', t9_4: 'Коврик', t9_5: 'Телефон' };
+        let correct = 0;
+        for (let id in answers) {
+            const val = document.getElementById(id).value;
+            if (val === answers[id]) correct++;
+        }
+        showResult('res9', correct === 5, correct, 5);
+    }
+
+    // --- Task 10 ---
+    function checkTask10() {
+        const normalize = (str) => str.toLowerCase().trim().replace(/\.$/, '').replace(/\?$/, '').replace(/\s+/g, ' ');
+        
+        const ans1 = "the sofa is in the living room";
+        const ans2_1 = "whose are these shoes";
+        const ans2_2 = "whose shoes are these";
+        const ans3 = "there is a mirror in the bathroom";
+        const ans4 = "this is his coat";
+        const ans5 = "these are my socks";
+
+        const val1 = normalize(document.getElementById('t10_1').value);
+        const val2 = normalize(document.getElementById('t10_2').value);
+        const val3 = normalize(document.getElementById('t10_3').value);
+        const val4 = normalize(document.getElementById('t10_4').value);
+        const val5 = normalize(document.getElementById('t10_5').value);
+
+        let correct = 0;
+        if (val1 === ans1) correct++;
+        if (val2 === ans2_1 || val2 === ans2_2) correct++;
+        if (val3 === ans3) correct++;
+        if (val4 === ans4) correct++;
+        if (val5 === ans5) correct++;
+
+        showResult('res10', correct === 5, correct, 5);
+    }
+
+    // --- Helper ---
+    function showResult(id, isCorrect, correct, total) {
+        const el = document.getElementById(id);
+        el.style.display = 'block';
+        if (isCorrect) {
+            el.className = 'result correct';
+            el.textContent = `✅ Отлично! Все ${total} ответов верны!`;
+        } else {
+            el.className = 'result incorrect';
+            el.textContent = `❌ Правильно ${correct} из ${total}. Попробуй еще раз!`;
+        }
+    }
+</script>
+</body>
+</html>
